@@ -1,0 +1,33 @@
+<div class="center-table">
+
+  <div class="button-row">
+    <button  class="create-button" type="submit" (click) = "onClick()"  >Create</button>
+  </div>
+  <table *ngIf = "isTableVisible">
+    <tr>
+      <th>{{columnNames[0]}}</th>
+      <th>{{columnNames[1]}}</th>
+    </tr>
+    <tr *ngFor="let department of departments">
+      <td>{{department.id}}</td>
+      <td>{{department.departmentName}}</td>
+    </tr>
+  </table>
+
+<form [formGroup] = "departmentForm"   >
+  <div  class="form-container" *ngIf = "!isTableVisible">
+    <label for="id">Id:</label>
+    <input type="text" id="id" formControlName = "id" />
+
+    <label for="departmentName">Department Name:</label>
+    <input type="text" id="departmentName" formControlName = "departmentName" />
+
+    <div class="button-row-form">
+      <button class="save-button" type="submit" (click) = "onSubmit()" >Save</button>
+      <button class="cancel-button" style="background-color: red;" (click) = "onCancel()" >Cancel</button>
+    </div>
+  </div>
+</form>
+
+
+</div>

@@ -1,0 +1,114 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    border: 4px solid #F7CAC9;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .center-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .button-row {
+    width: 100%; /* Make sure it takes full width */
+    display: flex;
+    justify-content:left;
+    margin-bottom: 10px; /* Add space between button and table */
+    margin-left: 50%;
+  }
+  
+  .table-container {
+    width: 100%; /* Adjust width to fit the layout */
+    max-width: 600px; /* Optional: limit table width */
+  }
+  
+  .create-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .create-button:hover {
+    background-color: #45a049;
+  }
+  
+  .form-container {
+    border: 4px solid #F7CAC9;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  .form-container label {
+    margin-bottom: 5px;
+  }
+  
+  .form-container input {
+    margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-container button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .form-container button:hover {
+    background-color: #45a049;
+  }
+  
+  .button-row-form {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Space between buttons */
+  }
+
+  .save-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .save-button:hover {
+    background-color: #45a049;
+  }
+  
+  .cancel-button {
+    padding: 10px 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cancel-button:hover {
+    background-color: #e53935;
+  }

@@ -18,11 +18,12 @@ export class DepartmentComponent implements OnInit {
 
 
 
-  public columnNames: string[] = ["Id", "DepartmentName"];
+  public columnNames: string[] = ["Id", "DepartmentName", "Actions"];
   public departments: Department[] = []; 
   public selectedDepartment: Department = { id: 0, departmentName: '' };
   public isTableVisible = true;
   public departmentForm: FormGroup;
+  public isEditing = false;
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
      this.departmentForm = this.fb.group({
@@ -35,10 +36,15 @@ export class DepartmentComponent implements OnInit {
     
     this.getDepartments();
 
+  }
 
+  initializeDepartmentForm() {
 
   }
 
+
+
+  
   getDepartments() {
     
     this.http.get<Department[]>(this.apiUrl).subscribe((res: Department[]) => {
@@ -46,8 +52,10 @@ export class DepartmentComponent implements OnInit {
     })
   }
 
-  onClick() {
+  onCreate() {
     this.isTableVisible = false;
+    this.isEditing = false;
+    this.departmentForm.reset();
   }
 
   onCancel() {
@@ -59,10 +67,40 @@ export class DepartmentComponent implements OnInit {
 
     this.http.post(this.apiUrl, this.departmentForm.value).subscribe(res => {
         alert('Record created successfully')
+        this.isTableVisible = true;
+        this.getDepartments()
     })
 
   }
 
+  onDelete(department: Department) {
+    console.log("Department is: ", department)
+
+    this.http.delete(this.apiUrl + '/' + department.id).subscribe(res => {
+      alert('Record delete successfully');
+      this.getDepartments();
+    })
+  }
+
+
+  onEdit(department: Department) {
+    console.log("Department is: ", department)
+    
+    this.isTableVisible = false;
+    this.departmentForm.patchValue(department)
+    this.isEditing = true;
+  }
+
+
+  onUpdate() {
+    console.log('on updated departmen form', this.departmentForm.value)
+    this.http.put(this.apiUrl + '/' + this.departmentForm.value.id, this.departmentForm.value).subscribe(res => {
+      alert('Record updated successfully');
+      this.getDepartments();
+    })
+
+    this.isTableVisible = true;
+  }
 
   
 }

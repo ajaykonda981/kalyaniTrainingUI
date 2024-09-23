@@ -1,0 +1,70 @@
+<div class="center-table">
+
+    <div class="button-row">
+      <button  class="create-button" type="submit" (click) = "onCreate()"  >Create</button>
+    </div>
+    <table *ngIf = "isTableVisible">
+      <tr>
+        <th>{{columnNames[0]}}</th>
+        <th>{{columnNames[1]}}</th>
+        <th>{{columnNames[2]}}</th>
+        <th>{{columnNames[3]}}</th>
+        <th>{{columnNames[4]}}</th>
+        <th>{{columnNames[5]}}</th>
+        <th>{{columnNames[6]}}</th>
+      </tr>
+      <tr *ngFor="let book of books">
+        <td>{{book.id}}</td>
+        <td>{{book.bookName}}</td>
+        <td>{{book.departmentName}}</td>
+        <td>{{book.actualStock}}</td>
+        <td>{{book.remainingStock}}</td>
+        <td>{{book.givenToStudents}}</td>
+        <td>
+          <div class="button-row-form">
+            <button class="cancel-button" style="background-color: rgb(67, 155, 244);" (click) = "onDelete(book)" >Delete</button>
+            <button class="cancel-button" style="background-color: rgb(253, 65, 134);" (click) = "onEdit(book)" >Edit</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <form [formGroup] = "bookForm"   >
+        <div  class="form-container" *ngIf = "!isTableVisible">
+          <label for="id">Id:</label>
+          <input type="text" id="id" formControlName = "id" />
+      
+          <label for="bookName">Book Name:</label>
+          <input type="text" id="bookName" formControlName = "bookName" />
+    
+          
+          <label for="departmentId">Department Id:</label>
+          <input type="text" id="departmentId" formControlName = "departmentId" />
+      
+          
+          <label for="actualStock">Actual Stock:</label>
+          <input type="number" id="actualStock" formControlName = "actualStock" />
+      
+          
+          <label for="givenToStudents">Given to Students:</label>
+          <input type="number" id="givenToStudents" formControlName = "givenToStudents" />
+      
+          
+          <label for="remainingStock">Remaining Stock:</label>
+          <input type="number" id="remainingStock" formControlName = "remainingStock" />
+      
+
+
+          <div class="button-row-form">
+            <button class="save-button" type="submit" *ngIf = "!isEditing"  (click) = "onSubmit()" >Save</button>
+            <button class="save-button" type="submit" *ngIf = "isEditing" (click) = "onUpdate()" >Update</button>
+            <button class="cancel-button" style="background-color: red;" (click) = "onCancel()" >Cancel</button>
+          </div>
+        </div>
+      </form>
+
+      
+
+</div>  
+  
+  

@@ -1,0 +1,76 @@
+<div class="center-table">
+
+    <div class="button-row">
+        <button  class="create-button" type="submit" (click) = "onCreate()"  >Create</button>
+      </div>
+      <table *ngIf = "isTableVisible">
+        <tr>
+          <th>{{columnNames[0]}}</th>
+          <th>{{columnNames[1]}}</th>
+          <th>{{columnNames[2]}}</th>
+          <th>{{columnNames[3]}}</th>
+          <th>{{columnNames[4]}}</th>
+          <th>{{columnNames[5]}}</th>
+          <th>{{columnNames[6]}}</th>
+          <th>{{columnNames[7]}}</th>
+        </tr>
+        <tr *ngFor="let bookManagement of bookManagements">
+            <td>{{bookManagement.id}}</td>
+            <td>{{bookManagement.studentName}}</td>
+            <td>{{bookManagement.bookName}}</td>
+            <td>{{bookManagement.bookIssueDate}}</td>
+            <td>{{bookManagement.expirtyDate}}</td>
+            <td>{{bookManagement.bookReturnDate}}</td>
+            <td>{{bookManagement.finAmountCharged}}</td>
+          <td>
+            <div class="button-row-form">
+              <button class="cancel-button" style="background-color: rgb(67, 155, 244);" (click) = "onDelete(bookManagement)" >Delete</button>
+              <button class="cancel-button" style="background-color: rgb(253, 65, 134);" (click) = "onEdit(bookManagement)" >Edit</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+
+      
+      
+<form [formGroup] = "bookManagementForm"   >
+  <div  class="form-container" *ngIf = "!isTableVisible">
+    <label for="id">Id:</label>
+    <input type="text" id="id" formControlName = "id" />
+
+    <label for="studentId">Student Id:</label>
+    <input type="number" id="studentId" formControlName = "studentId" />
+
+    
+    <label for="bookId">Book Id:</label>
+    <input type="number" id="bookId" formControlName = "bookId" />
+
+    
+    <label for="bookIssueDate">Book Issue Date:</label>
+    <input type="date" id="bookIssueDate" formControlName = "bookIssueDate" />
+
+    <label for="bookReturnDate">Book Return Date:</label>
+    <input type="date" id="bookReturnDate" formControlName = "bookReturnDate" />
+
+
+    <label for="expirtyDate">Expirty Date:</label>
+    <input type="date" id="expirtyDate" formControlName = "expirtyDate" />
+
+
+    <label for="finAmountCharged">FineAmountcharged:</label>
+    <input type="number" id="finAmountCharged" formControlName = "finAmountCharged" />
+
+
+
+    <div class="button-row-form">
+      <button class="save-button" type="submit" *ngIf = "!isEditing"  (click) = "onSubmit()" >Save</button>
+      <button class="save-button" type="submit" *ngIf = "isEditing" (click) = "onUpdate()" >Update</button>
+      <button class="cancel-button" style="background-color: red;" (click) = "onCancel()" >Cancel</button>
+    </div>
+  </div>
+</form>
+
+
+
+</div>

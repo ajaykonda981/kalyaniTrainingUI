@@ -1,0 +1,48 @@
+<div class="center-table">
+
+    <div class="button-row">
+      <button  class="create-button" type="submit" (click) = "onCreate()"  >Create</button>
+    </div>
+    <table *ngIf = "isTableVisible">
+      <tr>
+        <th>{{columnNames[0]}}</th>
+        <th>{{columnNames[1] }}</th>
+        <th>{{columnNames[2] }}</th>
+        <th>{{columnNames[3]}}</th>
+      </tr>
+      <tr *ngFor="let student of students">
+        <td>{{student.id}}</td>
+        <td>{{student.studentName}}</td>
+        <td>{{student.departmentName}}</td>
+        <td>
+          <div class="button-row-form">
+            <button class="cancel-button" style="background-color: rgb(67, 155, 244);" (click) = "onDelete(student)" >Delete</button>
+            <button class="cancel-button" style="background-color: rgb(253, 65, 134);" (click) = "onEdit(student)" >Edit</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  
+    
+<form [formGroup] = "studentForm"   >
+    <div  class="form-container" *ngIf = "!isTableVisible">
+      <label for="id">Id:</label>
+      <input type="text" id="id" formControlName = "id" />
+  
+      <label for="studentName">Student Name:</label>
+      <input type="text" id="studentName" formControlName = "studentName" />
+
+      
+      <label for="departmentId">Department Id:</label>
+      <input type="text" id="departmentId" formControlName = "departmentId" />
+  
+      <div class="button-row-form">
+        <button class="save-button" type="submit" *ngIf = "!isEditing"  (click) = "onSubmit()" >Save</button>
+        <button class="save-button" type="submit" *ngIf = "isEditing" (click) = "onUpdate()" >Update</button>
+        <button class="cancel-button" style="background-color: red;" (click) = "onCancel()" >Cancel</button>
+      </div>
+    </div>
+  </form>
+  
+  
+  </div>
